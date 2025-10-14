@@ -11,10 +11,14 @@
             "id": "36f32058f1806087",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "DB + SQL/DB 권한 설정 SQL.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "새 탭"
+              "title": "DB 권한 설정 SQL"
             }
           }
         ]
@@ -163,11 +167,11 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "d3a493d9e3230072",
+  "active": "36f32058f1806087",
   "lastOpenFiles": [
+    "프론트엔드/JQuery 에서 비동기 작업 병렬로 순서.md",
     "프론트엔드/바닐라 JavaScript에서 비동기 작업 병렬 순서 지정.md",
     "프론트엔드/VUE",
-    "프론트엔드/JQuery 에서 비동기 작업 병렬로 순서.md",
     "프론트엔드",
     "백엔드",
     "네트워크",
