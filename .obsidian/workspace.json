@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "2e8b04edd367b262",
+    "id": "45246e7e3c837fc1",
     "type": "split",
     "children": [
       {
-        "id": "d70fde28ba721111",
+        "id": "0acb4f218640f34c",
         "type": "tabs",
         "children": [
           {
-            "id": "71d8dfbe15de4c2a",
+            "id": "36f32058f1806087",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -23,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "2f7c379f76764468",
+    "id": "0bb31c5b03dc63fd",
     "type": "split",
     "children": [
       {
-        "id": "0649ba45cf420179",
+        "id": "e3030c69c946e270",
         "type": "tabs",
         "children": [
           {
-            "id": "49a7f6324ce0e65b",
+            "id": "d3a493d9e3230072",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +44,7 @@
             }
           },
           {
-            "id": "83dbef5a18e387fd",
+            "id": "e0abe7a3e1b72f9b",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -57,17 +57,17 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "검색"
             }
           },
           {
-            "id": "b9831b95078290eb",
+            "id": "90fcd7d437ddd0a9",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
               "state": {},
               "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "title": "북마크"
             }
           }
         ]
@@ -77,15 +77,15 @@
     "width": 300
   },
   "right": {
-    "id": "aaf24d009b678d73",
+    "id": "6c90f5c0758d207a",
     "type": "split",
     "children": [
       {
-        "id": "4606a931a3226471",
+        "id": "53cd7a0ff38fd378",
         "type": "tabs",
         "children": [
           {
-            "id": "47eaa4948acaa684",
+            "id": "7c9cde990b28aec3",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -99,11 +99,11 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "백링크"
             }
           },
           {
-            "id": "d0774b9b688f868a",
+            "id": "2b19574dfae084f8",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -112,11 +112,11 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "나가는 링크"
             }
           },
           {
-            "id": "5b01cea88a25bfbf",
+            "id": "b418796df50c7b80",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -127,22 +127,22 @@
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
-              "title": "Tags"
+              "title": "태그"
             }
           },
           {
-            "id": "a566a7b521546bcf",
+            "id": "9e96323427e253af",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md",
+                "file": "환영합니다!.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Untitled"
+              "title": "환영합니다! 의 개요"
             }
           }
         ]
@@ -163,12 +163,21 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "49a7f6324ce0e65b",
+  "active": "d3a493d9e3230072",
   "lastOpenFiles": [
-    "test.txt",
-    "Untitled.base",
-    "Untitled.md",
-    "Untitled",
-    "Welcome.md"
+    "프론트엔드/바닐라 JavaScript에서 비동기 작업 병렬 순서 지정.md",
+    "프론트엔드/VUE",
+    "프론트엔드/JQuery 에서 비동기 작업 병렬로 순서.md",
+    "프론트엔드",
+    "백엔드",
+    "네트워크",
+    "DB + SQL/DB 권한 설정 SQL.md",
+    "DB + SQL",
+    "CICD/쿠버네티스",
+    "CICD/도커/도커 이미지, 컨테이너 제어 명령어.md",
+    "CICD/도커/DockerFile의 용도와 작성법.md",
+    "CICD/도커",
+    "CICD",
+    "환영합니다!.md"
   ]
 }
