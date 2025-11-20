@@ -1,0 +1,106 @@
+Docker Compose는 YAML, YML 파일을 사용해 다중 컨테이너로 구성된 도커 애플리케이션을 관리하는 도구
+
+- docker compose up [옵션]  [서비스명] : compose.yaml 파일에 정의된 대로 애플리케이션 스택을 생성하고 시작하는 명령
+	- 옵션
+		- -d(--detach) : 백그라운드 모드로 실행
+		- --build : 컨테이너 실행 전 반드시 이미지 다시빌드
+		- --force-recreate : 무조건 컨테이너 새로 생성
+		- --remove-orphans : 지금 compose파일에 없는 컨테이너 삭제
+		- --no-deps : 뒤에 명시한 것만 작동하려할 시
+		- --scale : 특정 서비스의 컨테이너 개수 설정
+		- --abort-on-container-exit : 한 서비스 종료 시 컴포즈 종료
+- docker compose down [옵션]  [서비스] : 컴포즈로 올린 모든 컨테이너, 네트워크, 볼륨 등을 정리하는 명령어
+	- 옵션
+		- -v(--volume) : 관련 볼륨(데이터)까지 삭제 시
+		- --remove-orphan : 현 컴포즈 파일에 없는 컨테이너 제거
+		- --rmi all/local : 모든/로컬 이미지 삭제
+		- -t(--timeout) : 컨테이너 종료 대기 시간 설정
+- docker compose start [서비스] : 기존 컨테이너를 시작
+- docker compose stop [옵션]  [서비스] : 실행중인 컨테이너를 중지
+	- 옵션
+		- -t(--timeout) : 컨테이너 종료 시 기다리는 시간 설정
+- docker compose restart [서비스] : 컨테이너 재시작
+- docker compose create  [옵션]  [서비스] : 컨테이너 생성(실행안함)
+	- 옵션
+		- --build : 컨테이너 생성 이전에 이미지 빌드
+- docker compose rm [옵션]  [서비스] : 정지된 컨테이너 삭제
+	- 옵션
+		- -f(--force) : 강제성 부여
+		- -s(--stop) : 실행중인 컨테이너도 먼저 중지하고 삭제 시
+		- -v(--volume) : 익명 볼륨 삭제 시
+- docker compose wait [옵션]  [서비스] : 컨테이너가 특정 상태가 될 때 까지 대기하는 명령어
+- docker compose build [옵션] : 컴포즈파일에 정의된 이미지 빌드하는 명령어
+	- 옵션
+		- -no-cache : 캐시 없이 새로 빌드
+		- --pull : 이미지 새로 받고 빌드
+		- --parallel : 여러 서비스 직렬이 아닌 병렬 빌드
+- docker compose pull [옵션] : 컴포즈 파일에 정의된 이미지를 레지스트리에 내려받는 명령어
+	- 옵션
+		- --ignore-pull-failures : 일부 이미지 받기 실패해도 계속 진행
+		- --parallel : 병렬 내려받기
+- docker compose push [옵션] : 컴포즈 파일에 정의된 이미지를 레지스트리로 업로드
+	- 옵션
+		- --ignore-push-failures : 중간에 실패해도 미중단
+- docker compose images : 컴포즈 파일에 정의된 이지미 정보 조회
+- docker compose exec 서비스명 명령어 : 실행중인 컨테이너 안에서 명령어 실행, 기본적으로 STDIN과 tty 제공
+	- 옵션
+		- -T : tty 할당하지 않음
+		- -u : 사용자 지정
+		- -d(--detach) : 백그라운드에서 명령어 실행
+- docker compose logs [옵션]  [서비스] : 컴포즈 파일에 정의된 모든 서비스 로그 출력
+	- 옵션
+		- -f(--follow) : 실시간으로 로그 확인시
+		- --timestamps : 로그에 타임스탬프 정보 명시
+- docker compose attach [옵션]  서비스 : 실행중인 STDIN, STDOUT, STDERR 를 현재 터미널과 연결
+	- 옵션
+		- --no-stdin : stdin 스트림 제외
+		- --detach-keys : attach 세션종료 단축키 지정
+- docker compose run [옵션] 서비스 명령 : 컨테이너 생성 후 명령어를 실행하는 명령
+	- 옵션
+		- --rm : 컨테이너 종료 후 자동 삭제
+		- --d(--detach) : 백그라운드에서 실행 후 터미널 복구
+		- -T : tty 비활성화
+		- -u : 사용자 지정
+- docker compose top [서비스] : 실행중인 컨테이너에서 현재 실행중인 프로세스 확인
+- docker compose cp : 서비스/호스트의 파일/디렉토리를 서비스/호스트로 복사
+	- 서비스->호스트 : 서비스:파일경로 호스트파일경로
+	- 호스트->서비스 : 호스트파일경로 서비스:파일경로
+- docker compose kill [옵션]  [서비스] : 실행중인 컨테이너에 SIGKILL 신호를 보내 즉시 종료시키는 명령어
+	- -s(--signal) : SIGKILL 대신 다른 신호 보낼 때
+- docker compose pause [서비스] : 실행중인 컨테이너 일시중지
+- docker compose unpause : pause로 중지했던 컨테이너를 다시 실행
+- docker compose ps [옵션]  [서비스] : 현재 컴포즈 프로젝트의 컨테이너 상태 확인 명령어
+	- 옵션
+		- -a(--all) : 모든 컨테이너 표시
+		- --services : 서비스 이름만 출력
+		- --filter : 필터링
+- docker compose ls [옵션] : 현재 호스트에서 관리 중인 컴포즈 프로젝트 목록 확인
+	- 옵션
+		- -a(--all) : 모든 프로젝트 출력
+		- --format : table(기본), json, Go 템플릿
+		- --filter : 필터링
+- docker compose config [옵션] : 컴포즈 파일 구성을 확인하고 유효성 검증하는 명령어
+	- 옵션
+		- --services : 컴포즈파일에 정의된 서비스 이름만 출력
+		- --volumes : 정의된 볼륨명만 출력
+		- --networks : 정의된 네트워크명만 출력
+- docker compose port 서비스 컨테이너포트 : 포트포워딩 상태 확인 명령어
+- docker compose stats [옵션]  [서비스] : 실행중인 컨테이너의 자원사용량 확인
+	- 옵션
+		- --no-stream : 실시간 스트리밍 없이 한번만 출력
+		- --format : table(기본값), json, GO 템플릿
+- docker compose events [옵션]  [서비스] : 컴포즈 프로젝트에서 발생하는 이벤트 실시간 확인 명령어
+	- 옵션
+		- --json : 이벤트를 json 형태로 출력
+		- --since : 특정 시점 이후 이벤트 내용 출력
+- docker compose commit [옵션] 컨테이너 [이미지:태그] : 실행중인 컨테이너를 새 이미지로 저장
+	- 옵션
+		- --author : 작성자 정보 추가
+		- --message : 커밋 메시지 추가
+- docker compose export [옵션] 서비스 : 실행중인 컨테이너의 파일 시스템을 tar 파일로 내보냄
+	- 옵션
+		- -o(--output) : 출력 경로 지정
+- docker compose version [옵션] : 설치된 도커컴포즈 버전 확인 명령어
+	- 옵션
+		- --short : 버전 정보만 간단히 출력
+		- --format : 출력형식지정 table(기본)json, Go 템플릿

@@ -1,0 +1,50 @@
+
+- docker image build [옵션] 빌드소스경로 : Dockerfile에 정의된 내용으로 도커 이미지 생성
+	- 옵션(주로쓰는)
+		- -f(--file) : Dockerfile의 경로 지정
+		- -t(--tag) : 태그 지정
+		- --no-cache : 이전 캐시내용 사용하지 않도록 지정시
+		- --pull : 캐시 존재 여부와는 상관없이 최신버전 다시 다운로드 시
+		- --target : Dockerfile에서 최종 빌드할 스테이지만 지정시
+		- --debug : 디버그 내용 출력
+- docker image history [옵션] 이미지명 : 이미지의 이력 확인
+	- 옵션
+		- --format : table(기본), json, Go 템플릿
+		- --human : 친인간적 출력
+		- --no-trunc : 전체 출력
+		- --quiet : 이미지ID만 출력
+- docker image import [옵션] tar파일경로 : tar 파일로 이미지 생성
+	- 옵션
+		- -c(--change) : 이미지 생성 시 Dockerfile에 변경사항 추가
+		- -m(--message) : 이미지에 메시지 추가
+		- --platform : 플랫폼 지정
+- docker image save [옵션] 이미지명 : 이미지를 tar 확장자 파일로 저장
+	- 옵션
+		- --output : 저장항 파일의 경로 및 이름 지정
+- docker image inspect [옵션] 이미지명 : 이미지의 상세내용 출력
+	- 옵션
+		- -f(--format) : json, Go 템플릿으로 출력
+		- --platform : 플랫폼 지원여부 확인 시
+- docker image load [옵션] : tar 로 저장한 파일을 이미지로 변환
+	- 옵션
+		- --input : tar 파일 경로 지정
+		- --platform : 플랫폼 지정
+		- --quiet : 진행상황 미출력
+- docker image ls [옵션] : 이미지 목록 출력
+	- 옵션
+		- -a(--all) : 전체 조회
+		- -f(--filter) : 필터링
+		- --format : tabled(기본), json, Go 템플릿 지정
+		- --tree : 멀티플랫폼 구조이미지를 트리구조로 출력
+		- --digests : 이미지의 다이제스트 출력
+- docker image prune [옵션] : 사용되지 않는 이미지 삭제
+	- 옵션
+		- -a(--all) : 전체 지정
+		- --filter : 필터링
+		- -f(--force) : 강제성 부여
+- docker image rm [옵션] 이미지명 : 이미지 삭제
+	- 옵션
+		- -f(--force) : 강제성 부여
+		- --no-prune : 태그없는 부모 이미지는 미삭제
+		- --platform : 특정 플랫폼 지정해 삭제 시
+- docker image tag 이미지명 : 원본이미지의 태그이미지 생성 시 

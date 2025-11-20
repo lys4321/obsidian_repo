@@ -1,0 +1,5 @@
+- docker info [옵션] : 도커 데몬과 도커 호스트 환경 전반에 대한 내용 출력
+	- 옵션 : -f(--format)
+		- -f 로 부분적으로 출력이 가능한 부분은 Server부분이후부터 가능하다 '{{.부분명}}'
+		- Client부분을 보고 싶다면 docker version -f 를 이용해야한다.
+	- docker info -f '{{.}}' 를 했을 때는 기존 docker info 내용이 저장된 메모리 주소를 출력한다.

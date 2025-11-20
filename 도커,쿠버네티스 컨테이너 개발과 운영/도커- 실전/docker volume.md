@@ -1,0 +1,29 @@
+
+- docker volume create [옵션] 볼륨명 : 볼륨 생성
+	- 옵션
+		- -d(--driver) : 볼륨 생성 시 사용할 볼륨 드라이버 지정(local, 외부 플러그인 이름)
+		- -o(--opt) : 선택 드라이버에 특화된 옵션을 키-값으로 설정
+		- --label : 메타데이터 레이블 키-값으로 할당
+- docker volume inspect [옵션] 볼륨명 : 선택한 볼륨의 상세내용 출력
+	- 옵션
+		- -f(--format) : json, Go 템플릿 형식으로 출력 지정
+- docker volume ls [옵션] : 현재 노드에 로컬로 존재하는 볼륨 목록 조회
+	- 옵션
+		- --cluster : 클러스터 볼륨의 목록을 출력
+		- -f(--filter) : 필터링 시 사용
+		- --format : table(기본), json, Go 템플릿 형식으로 출력
+		- -q(--quiet) : 볼륨명 출력
+- docker volume prune [옵션] : 사용되지 않는 볼륨 전체 삭제
+	- 옵션
+		- -a(--all) : 중지된 컨테이너에 연결된 볼륨까지 삭제
+		- --filter : 필터링
+		- -f(--force) : 미리 y 선택하여 바로 삭제
+- docker volume rm [옵션] 볼륨명 : 지정한 볼륨 삭제
+	- 옵션
+		- -f(--force) : 미리 y 선택하여 바로 삭제
+- docker volume update [옵션] 볼륨명 : 볼륨 수정
+	- 옵션
+		- --availability : 볼륨가용성 설정
+			- active
+			- pause
+			- drain

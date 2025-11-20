@@ -1,0 +1,53 @@
+Docker Swarm 모드에서 클러스터 수준의 애플리케이션 서비스 관리 명령어
+- docker service create [옵션] 이미지 [명령어] [인자] : Swarm 클러스터에 서비스 배포
+	- 옵션
+		- --name 서비스명 : 서비스명 지정
+		- -r(--replicas) 복제수 : 서비스 복제(컨테이너)수 지정
+		- -p(--publish) 호스트포트:컨테이너포트 : 포트포워딩, 라우팅메시를 통해 클러스터 전체에 포트 노출
+		- --network 네트워크명 : 사용할 네트워크 지정
+		- -e(--env) 키=값 : 환경변수 설정
+		- --limit-cpu 사용량 : 각 태스크의 cpu사용량 제한
+		- --limit-memory 사용량 : 각 태스크의 메모리 사용량 제한
+		- --reserve-memory 사용량 : 각 태스크의 최소 메모리 사용량 설정
+- docker service inspect [옵션] 서비스명 : 선택한 서비스에 대한 상세 설정 및 런타임 정보를 JSON으로 출력
+	- 옵션
+		- --pretty : JSON 출력을 사람 친화적으로 포맷해 출력
+		- -f(--format) : Go템플릿 구문을 사용해 특정 필드만 추출, 템플릿 사용 시 컨텍스트는 .Spec으로 시작해야 조회 가능
+- docker service logs [옵션] 서비스명/태스크명 : 클러스터에 배포된 특정 서비스의 태스크에서 발생하는 로그들을 통합해 조회 시 사용
+	- 옵션
+		- --details : 로그라인에 노드정보와 태스크ID 함께 출력
+		- -f(--follow) : 로그 실시간 출력
+		- --no-resolve : ID를 이름으로 변환하지 않고 출력
+		- --no-task-ids : 태스크ID 미포함으로 출력
+		- -t(--timestamp) : 로그에 타임스탬프 추가해 출력
+		- --since '시간' : 지정시간 이후 기록된 로그 출력
+- docker service ls [옵션] : 서비스 목록 출력
+	- 옵션
+		- -f(--filter) '키=값' : 특정 조건에 맞는 서비스 필터링 조회
+		- --format : 출력형식 지정
+			- table (기본값)
+			- json
+			- Go 템플릿
+		- -q(--quiet) : 서비스ID만출력
+- docker service ps [옵션] 서비스명 : 클러스터에 배포된 서비스의 현재 실행 상태 목록 조회
+	- 옵션
+		- -f(--filter) : 태스크 필터링 
+		- --format : 출력형식 json 및 Go 템플릿 지정
+		- --no-trunc : 긴 내용까지 출력
+		- -q(--quiet) : 태스크 ID만 출력
+- docker service rm 서비스명 : 서비스 삭제
+- docker service rollback [옵션] 서비스명 : 구성 변경사항을 이전 버전으로 돌릴 때 사용, update 이후 오류 발생 시 복구의 용도로 사용
+	- 옵션
+		- -d(--detach) : 백그라운드에서 복구 진행
+		- -q(--quiet) : 진행률 출력 숨김
+- docker service scale 서비스명=복제수 : 복제수 변경 시 사용
+	- 옵션
+		- -d(--detach) : 백그라운드 진행
+- docker service update [옵션] 서비스명 : 실행중인 서비스 변경 시 사용
+	- 옵션(너무 많아 몇개만 적음)
+		- --replicas : 서비스 복제(컨테이너) 수 변경
+		- --publish-add : 포트포워딩 '추가'
+		- --env-add : 환경변수 수정
+		- --limit-memory : 최대 메모리 수정
+		- --update-delay : 태스크 교체 간격 설정
+		- --image : 변경할 이미지 지정

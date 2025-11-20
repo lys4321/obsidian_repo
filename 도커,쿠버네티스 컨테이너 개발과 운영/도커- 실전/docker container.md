@@ -1,0 +1,113 @@
+- docker container attach [옵션] 컨테이너명 : 실행중인 컨테이너를 포어그라운드로 연결
+	- 옵션
+		- --detach-keys : 컨테이너를 정지하지 않고 연결을 분리할 시퀀스 지정
+		- --no-stdin : 컨테이너의 STDIN에 연결하지 않도록 설정
+		- --sig-proxy : 수신 시그널을 PID1로 전달
+- docker container commit [옵션] 컨테이너 [리포지토리:태그] : 실행 중이거나 종료된 컨테이너의 현재 상태를 새 이미지로 저장 시 사용
+	- 옵션
+		- -a(--author) : 작성자 정보 지정
+		- -c(--change) : 추가적인 Dockerfile 명령어 적용
+		- -m(--message) : 커밋 메세지 입력
+		- -p(--pause) : 커밋할 때 컨테이너 일시중지 할 시
+- docker container cp [옵션] ~~ : 도커컨테이너와 호스트 간 파일이다 디렉토리 복사 시 사용
+	- ~~ 의 종류
+		- 로컬/호스트의경로 컨테이너명:내부경로 : 호스트 -> 컨테이너로 복사
+		- 컨테이너명:내부경로 로컬/호스트의경로 : 컨테이너 -> 호스트로 복사
+	- 옵션
+		- -a(--archive) : 아카이브 모드로 복사
+		- -q(--quiet) : 진행 상태 메시지 숨김
+- docker container create [옵션] 이미지명 [명령어]  [인자] : 이미지로 컨테이너 생성
+	- 옵션
+		- --name : 컨테이너 이름 지정
+		- -i(--interactive) : 컨테이너에 STDIN을 열린 상태로 지정
+		- -t(--tty) : 컨테이너에 가상 터미널 할당
+		- -a(--attach) : STDIN, STDOUT, STDERR 스트림 제어
+		- -h(--hostname) : 컨테이너 내부 호스트 이름 설정
+		- --label : 컨테이너 메타데이터에 키-깂을 추가
+		- -p(--publish) : 포트포워딩
+		- --network : 이 컨테이너를 넣을 네트워크 지정
+		- -v(--volume) : 사용할 볼륨 지정
+		-  --mount : 볼륨, 바인트 마운트 등을 더 상세하게 설정하는 방식(
+			type=타입,source=호스트내경로,target=컨테이너내경로,option=옵션)
+			- 타입
+				- bind : 호스트의 실제 디렉터리나 파일을 컨테이너에 마운트
+				- volume : 도커 엔진이 관리하는 볼륨을 컨테이너에 마운트
+				- tmpfs : 호스트의 램에 데이터를 저장하는 임시 파일 시스템을 컨테이너에 마운트
+	-  작성 중 의문점
+		- create 에서 -i와 -a 차이
+			- -i : 입력을 컨테이너에 전달하기 위해 STDIN을 '열어'둡니다.
+			- -a : 입출력 중 원하는 스트림(STDIN, STDOUT, STDERR)을 현재 터미널에 '제어'합니다.
+			=> create에서 i는 STDIN를 '열도록' 설정하고 a는 STDIN, STDOUT, STDERR중 선택적으로 '설정'한다. 그리고 여기서 설정된 값은 추후 실행되는 컨테이너에 attach로 접근 시 사용되는 모드가 된다. 만약 -a를 설정하지 않아도 나중에 attach 시 3가지 확인이 가능하나 -i가 없다면 STDIN은 제외하고 나머지 2개만 확인이 된다.
+		- -v와 --mount 차이
+			- 각각 구버전 신버전을 의미하며 --mount는 key-value형태로 작성하기 때문에 더 명확하여 -v보다 추천됨
+- docker container diff 컨테이너명 : 지정한 컨테이너에 발생한 변경 검사
+- docker container exec [옵션] 컨테이너명 : 실행중인 컨테이너에서 명령 실행
+	- 옵션
+		- -d(--detach) : 백그라운드 모드로 실행
+		- -i(i--nteractive) : STDIN 스트림 유지
+		- -t(--tty) : 가상 터미널 생성 
+		- -u(--user) : 명령을 실행할 유저 지정
+- docker container export [옵션] 컨테이너명 : 컨테이너를 tar파일로 추출, 보통 '>' 를 같이 써 tar파일이 저장될 경로를 지정
+	- 주의 : export는 image save와는 다르게 이미지레이어와 JSON메타데이터를 저장하지 않아 인터넷연결필요
+	- 옵션
+		- -o(--output) : 경로 지정 없이 저장
+- docker container import [옵션] 파일경로 지정할컨테이너명:태그
+	- 옵션
+		- --change : 새 이미지에 Dockerfile명령을 적용해 메타데이터 설정
+		- --message : 이미지에 대항 설명 메시지 추가
+		- --platform : 이미지가 대상으로 하는 플랫폼 지정
+- docker container inspect [옵션] 컨테이너명 : 지정 컨테이너에 대한 상세 내용 출력
+	- 옵션
+		- -f(--format) : json, Go 템플릿 형식 지정
+		- -s(--size) : 컨테이너의 크기 및 디스크 사용량 출력
+- docker container kill [옵션] 컨테이너명 : 컨테이너 죽임
+	- 옵션
+		- -s(--signal) : 컨테이너에게 시그널 전송
+- docker container logs [옵션] 컨테이너명 : 컨테이너의 로그 조회
+	- 옵션
+		- --details : 로그에 추가 상세 정보 출력
+		- --timestamps : 타임스탬프 추가
+		- --follow : 로그 실시간 출력
+		- --since : 지정 시간 이후 로그 표시
+		- --until : 지정 시간 이전 로그 표시
+- docker container ls [옵션] : 컨테이너 목록 조회
+	- 옵션
+		- -a(-all) : 모든 컨테이너 조회
+		- -f(--filter) : 필터링
+		- --format : table, json, Go 템플릿
+		- -q(--quiet) : 간략 조회
+		- -s(--size) : 크기 출력
+
+- docker container pause 컨테이너명 : 컨테이너 일시정지
+- docker container port 컨테이너명 : 포트포워딩 확인 
+- docker container prune [옵션] : 사용되지 않는 컨테이너 삭제
+	- 옵션
+		- --filter : 필터링
+		- -f(--force) : 강제성 부여
+- docker container rename 컨테이너명 새컨테이너명 : 컨테이너 이름 수정
+- docker container restart [옵션] 컨테이너명 : 컨테이너 재시작
+	- 옵션
+		- -s(--signal) : 컨테이너에 시그널 전송
+		- -t(--timeout) : 종료까지 지정시간까지 기다림
+- docker container rm [옵션] 컨테이너명 : 컨데이터 삭제
+	- 옵션
+		- -f(--force) : 강제성 부여
+		- -v(--volume) : 연결된 익명 볼륨까지 제거
+- docker container start [옵션] 컨테이너명 : 컨테이너 시작
+	- 옵션
+		- -a(--attach) : STDOUT, STDERR 스트림을 터미널에 연결
+		- -i(--interactive) : STDIN 스트림을 터미널에 연결
+- docker container stop [옵션] 컨테이너명 : 컨테이너 중지
+	- 옵션
+		- -s(--signal) : 컨테이너에 지정 시그널 전송
+		- -t(--timeout) : 컨테이너 중지 시 대기 초시간 지정
+- docker container update [옵션] 컨테이너명 : 컨테이너 수정
+	- 옵션(자주쓰는)
+		- --cpu-shares : cpu 사용 가중치 설정(기본값 1024)
+		- --cpus : 사용 cpu 코어수/비율 지정
+		- --memory : 사용가능한 램 용량 지정
+		- --restart : 종료 시 재시작 정책 수정 
+			- no : 기본값
+			- on-failure[최대재시도횟수] 
+			- unless-stopped : 수동정지가 아닐 때 재시작
+			- always : 항상 재시작

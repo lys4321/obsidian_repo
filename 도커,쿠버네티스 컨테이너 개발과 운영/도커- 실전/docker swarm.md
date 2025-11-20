@@ -1,0 +1,27 @@
+도커 호스트(노드)를 하나의 클러스터로 묶어 분산 애플리케이션을 배포/관리하는데 사용하는 명령어
+- docker swarm init [옵션] : 현재 사용 중인 docker 호스트를 Docker Swarm의 Manager 노드로 지정하고 Swarm 모드 활성화
+	- 옵션
+		- --advertise-addr IP:PORT : 생성하려는 관리자 노드의 주소를 할당하기 위해 사용(아웃바운드)
+		- --listen-addr IP:PORT : 생성하려는 관리자 노드의 수신용 IP와 PORT 주소 지정(인바운드)
+		- --force-new-cluster : 현재 호스트가 Swarm이 활성화된 상태에서 새로 Swarm 활성화 시 사용
+		- --default-addr-pool IP/Subnet : 기본 서브넷 범위(CIDR) 설정
+- docker swarm join [옵션] : Docker Swarm 클러스터에 새 노드를 넣을 때 사용
+	- 옵션
+		- --token 클러스터토큰값(worker/manager)-(worker/manager) 관리자노드IP:PORT : 필수값, 넣는 노드의 종류를 지정
+		- --advertise-addr IP:PORT : init의 옵션과 동일
+		- --listen-addr IP:PORT : init의 옵션과 동일
+		- --availability : 클러스터 내에서 노드의 태스크 할당 상태를 설정
+			- active : 기본값, 새 태스크를 할당받고 기존 태스크 실행
+			- pause : 기존 태스크만 실행
+			- drain : 기존 태스크를 다른 노드에 이동
+		- --force-new-cluster : manager토큰 사용 시 노드가 생성된 클러스터의 새 관리자로 강제 지정
+- docker swarm join-token (worker/manager) [옵션] : 작업자/매니저 토큰 조회 명령어
+	- 옵션
+		- --rotate : 새 토큰 발급 및 기존 토큰 무효화
+- docker swarm leave [옵션] : Docker Swarm 모드 비활성화
+	- 옵션 
+		- --force : 관리자 노드 비활성화
+- docker swarm update [옵션] : Docker Swarm 클러스터의 전역 설정 변경 시 사용
+	- 옵션
+		- --autolock : (true/false) ,모든 관리자 노드가 재부팅할 때마다 클러스터 메타데이터에 접근하기 위해 키를 요구
+		- --cert-expiry : TLS 인증서 유효 기간 설정

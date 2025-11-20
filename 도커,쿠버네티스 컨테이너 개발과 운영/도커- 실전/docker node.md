@@ -1,0 +1,31 @@
+클러스터 내 모든 참여 노드 관리하는 명령어
+- docker node demote 노드명 : 관리자노드를 작업자 노드로 변경 시 사용
+- docker node inspect [옵션] (self/노드ID) : 선택한 노드의 상세내용 출력
+	- 옵션
+		- -f(--format) : json, Go 템플릿 형식으로 출력
+		- --pretty : 인간친화적으로 출력
+- docker node ls [옵션] : 노드 목록 출력 
+	- 옵션
+		- -f(--filter) : 노드 필터링 시 사용
+		- --format : 테이블, json, Go 템플릿 형식으로 출력 시 사용
+		- -q(--quiet) : ID만 조회 시
+- docker node promote 노드ID :  작업자노드를 관리자 노드로 변경
+- docker node ps [옵션] 노드ID
+	- 옵션
+		- -f(--filter) : 필터링 
+		- --format : Go 템플릿 형식으로 출력
+		- --no-resolve : ID를 이름으로 변환하지 않고 출력
+		- --no-trunc : 긴 내용 자르지 않고 출력
+		- -q(--quiet) : 노드ID만 출력
+- docker node rm [옵션] 노드ID : 노드 삭제
+	- 옵션
+		- -f(--force) : 강제성 부여
+- docker node update [옵션] 노드ID : 노드 설정 수정
+	- 옵션
+		- --availabil : 가용성 상태변경
+			- active : 기본값, 활성상태로서 새 태스크 할당 가능
+			- pause : 일시정지, 기존 실행 태스크 유지
+			- drain : 배출상태, 기존 실행 태스크를 active 노드로 이동
+		- --label-add : 노드에 라벨수정
+		- --label-rm : 라벨제거
+		- --role (worker, manager) : 노드 역할변경

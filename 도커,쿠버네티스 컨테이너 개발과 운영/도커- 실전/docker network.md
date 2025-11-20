@@ -1,0 +1,42 @@
+컨테이너-컨테이너 나 호스트-컨테이너 가 통신 방식 설정하고 제어하는 명령어
+- docker network connect [옵션] 네트워크명 컨테이너명 : 실행중인 컨테이너를 특정 도커 네트워크에 연결하려 할 때 사용
+	- 옵션
+		- --alias : 네트워크 내 사용할 별칭 명명
+		- --driver-opt : 네트워크 드라이버에 전달할 옵션 지정
+		- --gw-priority : 컨테이너가 다중 네트워크 연결될 시 해당 네트워크의 게이트웨이가 기본 네트우크로 설정될 우선순위 지정
+		- --ip : ver4 주소 수동지정
+		- --ipv6 : vet6 주소 수동지정
+		- --link-local-ip : 컨테이너 내 링크-로컬 ipver4 주소를 추가 할당
+- docker network create [옵션] 네트워크명 : 사용자 정의 네트워크 생성
+	- 옵션 (자주쓰는)
+		- --driver : 생성할 네트워크 드라이버 지정 
+			- bridge : 기본, 브릿지 네트워크로 설정
+			- overlay : 도커 스웜에서 사용되며 여러 도커 호스트에 걸쳐 통신하게함
+			- macvlan : 컨테이너에 고유 MAC 주소 할당
+			- host : 도커 호스트와 네트워크 스택 공유
+		- --subnet : 네트워크에 설정할 IP 주소를 CIDR(IP/Subnet)형식으로 명시적 지정
+		- --gateway : 네트워크의 기본 게이트웨이 주소 지정 --subnet옵션과 같이 사용
+		- --opt : 드라이버에 전달할 옵션을 키-값으로 설정
+- docker network disconnect [옵션] 네트워크명 컨테이너명 : 네트워크에서 지정 컨테이너 제외
+	- 옵션
+		- -f(--force) : 강제성 부여
+- docker network inspect [옵션] 네트워크명 : 지정 네트워크에 대한 상세내용 출력
+	- 옵션
+		- -f(--format) : json, Go 템플릿 형식 지정
+		- -v(--verbose) : 네트워크 진단 시 사용되는 옵션
+- docker network ls [옵션] : 현재 도커 호스트 내 있는 네트워크 목록 조회
+	- 옵션
+		- -f(--filter) : 필터링
+		- --driver : 특정 드라이버만 검색
+		- --name : 이름검색
+		- --label : 라벨 키-값 으로 검색
+		- --format : table, json, Go 템플릿
+		- --no-trunc : 전체 내용 출력
+		- --quiet : ID만 출력
+- docker network prune [옵션] : 사용되지 않는 네트워크 삭제
+	- 옵션
+		- --filter : 필터링
+		- -f(--force) : 강제성 부여
+- docker network rm [옵션] 네트워크명
+	- 옵션
+		- -f(--force) : 강제성 부여

@@ -1,0 +1,30 @@
+Docker Compose 파일 형식(yaml, yml) 을 사용해 여러 서비스로 구성된 애플리케이션을 단일 명령으로 클러스터에 배포/관리하는데 사용하는 명령어
+- docker stack deploy [옵션] 스택명 : compose 파일로 스택 배포 및 업데이트에 사용
+	- 옵션
+		- -c(--compose-file) : 컴포즈파일 경로 지정
+		- -d(--detach) : 백그라운드에서 실행
+		- --prune : 컴포즈파일에서 제거된 서비스나 네트워크를 클러스터에서 제거
+		- -q(--quiet) : 진행상황 미출력
+		- --resolve-image : 스웜에게 다이제스트 확인을 언제 시킬지 설정하는 옵션
+			- always : 기본값, 이미지 배포마다 질의
+			- never : 질의하지 않고 로컬캐시의 정보나 태그 그대로 사용
+			- changed : 컴포즈파일의 이미지 이름이나 태그가 이전과 다를 때만 레지스트리에 질의
+		- --with-registry-auth : 프라이빗 레지스트리 사용 시 인증정보가 필요해 그 정보를 입력하는 옵션
+- docker stack ls [옵션] : 스택목록 조회
+	- 옵션
+		- --format : table(기본), json, Go 템플릿 형식 지원
+- docker stack ps [옵션] 스택명 : 실제 가동중인 특정 스택의 태스크레벨 상세 상태 조회
+	- 옵션
+		- -f(--filter) : 필터링 시 사용
+		- --format : 출력형식 table(기본값), json, Go 템플릿
+		- --no-resolve : ID를 이름으로 변환하지 않고 출력
+		- --no-trunc : 긴 내용 자르지 않고 출력
+		- -q(--quiet) : 스택ID만 출력
+- docker stack rm [옵션] 스택명 : 스탹 삭제
+	- 옵션
+		- -d(--detach) : 백그라운드 실행
+- docler stack services [옵션] 스택명 : 특정 스택의 모든 서비스 레벨 목록과 상태 조회
+	- 옵션
+		- -f(--filter) : 필터링
+		- --format : 출력유형 지정, table(기본), json, Go 템플릿
+		- -q(--quiet) : 스택ID만 출력
