@@ -1,0 +1,35 @@
+도커 이미지 빌드 시 사용하는 파일
+
+명령어
+- FROM : 베이스 이미지 지정
+	- 예 : FROM ubuntu:latest
+- WORKDIR : 컨테이너 내 작업 디렉토리 설정
+	- 예 : WORKDIR /app
+- COPY : 호스트 파일/폴더를 컨테이너로 복사
+	- 예 : COPY /document(호스트) /app/docu(컨테이너)
+- ADD : COPY의 기존 기능 + 파일다운로드 + 파일압축해제
+	- 예 : ADD https://... /app/program
+- RUN : 이미지 빌드 시 단 한번만 실행할 명령 실행
+	- 예 : RUN pip install -r test.txt
+- CMD : 컨테이너 실행 시 기본 명령 지정, 컨테이너당 1개만 있어야해서 기본 명령어를 선언한 쉘스크립트 파일을 만들어 그거 하나만 실행되도록 할 수 있음
+	- 예 : CMD ["python", "app.py"]
+- ENTRYPOINT : 컨테이너 실행 시 실행되는 명령을 고정(고정시키면 CMD에선 인자만 넣어서 실행이 됨)
+	- 예 : ENTRYPOINT ["python"]
+- ENV : 환경 변수 설정
+	- 예 : ENVIR=ARGVALUE ENVIR2=ARGVALUE2
+- EXPOSE : 컨테이너 포트 노출(문서화 기록용이며 실제 포트 연결은 -p 로 포트포워딩이 필요하다)
+	- 예 : EXPOSE 8080
+- ARG : 빌드 시 전달 가능한 변수 지정 
+	- 예 : VERSION=2.0
+- USER : 컨테이너 실행 사용자 변경
+	- 예 : USER root
+- VOLUME : 컨테이너에서 외부 볼륨 마운트할 위치 지정 
+	- 에 : VOLUME /data
+- ONBUILD ; 이 이미지를 기반으로 한 Dockerfile 빌드 시 실행될 명령(부모-자식 이미지 괸계일 때)
+	- 예 : ONBUILD COPY . /app
+- STOPSIGNAL : 컨테이너 종료 시 보낼 신호 지정
+	- 예 : STOPSIGNAL SIGTERM
+- HEALTHCHECK : 컨테이너 헬스 상태 검사 명령어
+	- 예 : HEALTHCHECK CMD curl- f https;://~~~
+- SHELL : RUN, CMD, ENTRYPOINT 를 실행할 쉘 변경 시 
+	- 예 : SHELL ["powershell", "-Comment"]
