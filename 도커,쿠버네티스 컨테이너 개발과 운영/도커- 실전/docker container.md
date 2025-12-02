@@ -19,9 +19,6 @@
 - docker container create [옵션] 이미지명 [명령어]  [인자] : 이미지로 컨테이너 생성
 	- 옵션
 		- --name : 컨테이너 이름 지정
-		- -i(--interactive) : 컨테이너에 STDIN을 열린 상태로 지정
-		- -t(--tty) : 컨테이너에 가상 터미널 할당
-		- -a(--attach) : STDIN, STDOUT, STDERR 스트림 제어
 		- -h(--hostname) : 컨테이너 내부 호스트 이름 설정
 		- --label : 컨테이너 메타데이터에 키-깂을 추가
 		- -p(--publish) : 포트포워딩
