@@ -1,0 +1,18 @@
+- 설정된 정책에 따라 자동으로 Amazon EC2 인스턴스 수를 조절하여 서버 용량을 늘리거나 줄이는 서비스
+- Auto Scaling Group 이라는 EC2 인스턴스 모음을 생성하고 이 그룹의 인스턴스 수를 조정하도록 Minimum / Desired / Maximum 용량을 가진다.
+- 장점
+	- AZ와 인스턴스의 상태를 모니터링 하여 비정상 인스턴스 자동 종료 및 대체 인스턴스 생성을 하기 때문에 내결함성이 향상
+	- EC2 Auto Scaling은 애플리케이션이 항상 현재 트래픽 요구를 처리할 수 있는 올바른 용량을 갖추도록 돕기 때문에 가용성 향상
+	- 용량을 동적으로 사용하기 때문에 비용 관리가 향상
+- #### EC2 Auto Scaling Lifecycle
+	- 순서
+		- 1. Pending
+			- Peding:Wait
+		- 1-2. Pending:Procceed
+		- 2. InService
+		- 3. Terminating
+			- Terminating:Wait
+		- Terminated
+	- Lifecycle 
+		- EC2 Auto Scaling Lifecycle은 인스턴스가 생성·종료될 때 바로 트래픽을 받거나 끊지 않도록 중간 제어 지점을 제공한다.
+		- 라이프사이클 훅의 목적은 자동 진행을 일시 정지하고 준비 및 정리 작업 시간을 확보하는 것
